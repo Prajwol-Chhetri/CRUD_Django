@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block body %}
+  <h1>Author List</h1>
+  {% if author_list %}
+  <ul>
+    {% for author in author_list %}
+      <li>
+          {{ author.name }}
+         (<a href="{% url 'blogs:author_update' author.id %}">Update</a> |
+          <a href="{% url 'blogs:author_delete' author.id %}">Delete</a>)
+      </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+    <p>There are no authors in your blog.</p>
+  {% endif %}
+  <p><a href="{% url 'blogs:author_create' %}">Add an author</a></p>
+  <p>
+    <a href="{% url 'blogs:all' %}">Back to blogs</a>
+  </p>
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}Blogs{% endblock %}
+{% block blog_active %}active{% endblock blog_active %}
+{% block body %}
+    <div class="container">
+        {% if blogs_list %}
+            {% for blog in blogs_list %}
+            <div class="my-4">
+                <h3 class="text-dark"><a href="/blogs/blog/{{blog.slug}}"" class="text-dark my-3">{{blog.title}}</a></h3>
+                <div class="my-2">
+                    {{blog.trailer|slice:245}}...
+                </div>
+                <a href="/blogs/blog/{{blog.slug}}" class="btn btn-primary btn-sm active" role="button" aria-pressed="true">Read More</a>
+                <br/>
+                <br/>
+            </div>
+            {% endfor %}
+        {% else %}
+            <p>There are no blogs.</p>
+        {% endif %}
+    </div>
+{% endblock %}
+

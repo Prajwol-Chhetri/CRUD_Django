@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}Edit{% endblock %}
+{% block edit_active %}active{% endblock edit_active %}
+{% block body %}
+    <h3 class="my-3 mx-3">Welcome to Blog List</h3>
+    {% if blogs_list %}
+        <ul>
+        {% for blog in blogs_list %}
+            <li>
+                {{ blog.title }} ({{ blog.author }})
+                (<a href="{% url 'blogs:blog_update' blog.sno %}">Update</a> |
+                <a href="{% url 'blogs:blog_delete' blog.sno %}">Delete</a>) <br/>
+                {{ blog.trailer }}
+            </li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>There are no blogs.</p>
+    {% endif %}
+    <p>
+        {% if author_count > 0 %}
+            <a href="{% url 'blogs:blog_create' %}">Add a blog</a>
+        {% else %}
+            Please create an author before you add a blog.
+        {% endif %}
+    </p>
+    <p>
+        <a href="{% url 'blogs:author_list' %}">View Authors</a> ({{ author_count }}) |
+        <a href="{% url 'blogs:author_create' %}">Add an Author</a>
+    </p>
+{% endblock %}
+
+
